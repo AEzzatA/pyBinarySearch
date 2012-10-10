@@ -1,15 +1,26 @@
 def bSearch(Phrase, SortedList):
-	if (Phrase < SortedList[0]) or (Phrase > SortedList[len(SortedList)-1]):
+	Low = 0
+	High = len(SortedList) - 1
+	Mid = (High + Low) // 2
+	if (Phrase < SortedList[Low]) or (Phrase > SortedList[High]):
 		return "Item isn't in the givin list"
-		#sys.exit(0) #Import sys and un-comment these lines if you want!
-	if (len(SortedList) == 2):
+	if (High == 2):
 		if (Phrase == SortedList[0]):
 			return SortedList[0]
-			#sys.exit()
 		else: 
 			return SortedList[1]
-			#sys.exit(0)
-	if(Phrase < (len(SortedList)/2)):
-		bSearch(Phrase,SortedList[0:len(SortedList)/2 -1])
+	if Phrase < Mid:
+		bSearch(Phrase,SortedList[0 : Mid])
 	else:
-		bSearch(Phrase, SortedList[len(SortedList)/2 : len(SortedList)-1])
+		bSearch(Phrase, SortedList[Mid : High])
+
+def main():
+	my_list = [34,32,34,234,23,42,43,234,234,2,423,41,3,12,123,13,13,12,3,423,42,4]
+	my_list = sorted(my_list)
+	Sort = bSearch(2, my_list)
+	print Sort
+
+
+
+if __name__ == "__main__":
+    main()
